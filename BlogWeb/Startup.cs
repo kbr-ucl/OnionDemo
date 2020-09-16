@@ -20,6 +20,8 @@ namespace BlogWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add-Migration Initial -context OnionDemo.Database.BlogContext -Project OnionDemo.Database.Migrations
+            // Update-Database Initial -context OnionDemo.Database.BlogContext -Project OnionDemo.Database.Migrations
             services.AddDbContext<BlogContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                     x => x.MigrationsAssembly("OnionDemo.Database.Migrations")));
