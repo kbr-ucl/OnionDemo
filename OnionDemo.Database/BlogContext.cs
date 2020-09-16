@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using OnionDemo.Domain.Model;
 
 namespace OnionDemo.Database
@@ -14,6 +15,9 @@ namespace OnionDemo.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //this will apply configs from separate classes which implemented IEntityTypeConfiguration<T>
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
+
     }
 }
