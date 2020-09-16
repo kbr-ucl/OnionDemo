@@ -4,9 +4,9 @@ using OnionDemo.Domain.Model;
 
 namespace OnionDemo.Database.ModelConfigurations
 {
-    public class BlogConfiguration : IEntityTypeConfiguration<Blog>
+    public class PostConfiguration : IEntityTypeConfiguration<Post>
     {
-        public void Configure(EntityTypeBuilder<Blog> builder)
+        public void Configure(EntityTypeBuilder<Post> builder)
         {
             builder.HasKey(a => a.Id);
         }
