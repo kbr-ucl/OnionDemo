@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnionDemo.Application;
+using OnionDemo.Application.Infrastructor;
 using OnionDemo.Database;
 using OnionDemo.Query;
 
@@ -36,8 +37,11 @@ namespace BlogWeb
             });
 
             // Command and Query
-            services.AddScoped<IBlogApplicationService, BlogApplicationService>();
-            services.AddScoped<IBlogQueryService, BlogQueryService>();
+            services.AddScoped<IBlogCommand, BlogCommand>();
+            services.AddScoped<IBlogQuery, BlogQuery>();
+
+            // Repository
+            services.AddScoped<IBlogRepository, BlogRepository>();
 
             services.AddControllersWithViews();
         }

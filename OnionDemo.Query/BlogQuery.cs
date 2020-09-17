@@ -7,29 +7,16 @@ using OnionDemo.Query.Model;
 
 namespace OnionDemo.Query
 {
-    public interface IBlogQueryService
-    {
-        Task<IEnumerable<BlogDto>> GetAll();
-        Task<BlogDto> Get(Guid id);
-    }
-
-    public interface IPostQueryService
-    {
-        Task<IEnumerable<PostDto>> GetAll();
-        Task<IEnumerable<PostDto>> GetAllByBlog(Guid blogId);
-        Task<PostDto> Get(Guid id);
-    }
-
-    public class BlogQueryService : IBlogQueryService
+    public class BlogQuery : IBlogQuery
     {
         private readonly IDatabaseConnectionFactory _db;
 
-        public BlogQueryService(IDatabaseConnectionFactory db)
+        public BlogQuery(IDatabaseConnectionFactory db)
         {
             _db = db;
         }
 
-        async Task<BlogDto> IBlogQueryService.Get(Guid id)
+        async Task<BlogDto> IBlogQuery.Get(Guid id)
         {
             var lookup = new Dictionary<Guid, BlogDto>();
 
@@ -55,7 +42,7 @@ namespace OnionDemo.Query
             return lookup.Values.FirstOrDefault();
         }
 
-        async Task<IEnumerable<BlogDto>> IBlogQueryService.GetAll()
+        async Task<IEnumerable<BlogDto>> IBlogQuery.GetAll()
         {
             var lookup = new Dictionary<Guid, BlogDto>();
 

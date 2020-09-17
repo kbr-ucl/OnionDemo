@@ -11,10 +11,10 @@ namespace BlogWeb.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly IBlogApplicationService _command;
-        private readonly IBlogQueryService _query;
+        private readonly IBlogCommand _command;
+        private readonly IBlogQuery _query;
 
-        public BlogController(IBlogQueryService query, IBlogApplicationService command)
+        public BlogController(IBlogQuery query, IBlogCommand command)
         {
             _query = query;
             _command = command;
@@ -55,7 +55,7 @@ namespace BlogWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _command.Execute(new Command.CreateBlog {BlogId = Guid.NewGuid()});
+                await _command.Execute(new Command.CreateBlog());
                 return RedirectToAction(nameof(Index));
             }
 

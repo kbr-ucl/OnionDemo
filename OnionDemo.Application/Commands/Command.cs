@@ -19,7 +19,6 @@ namespace OnionDemo.Application.Commands
 
         public class CreateBlog
         {
-            public Guid BlogId { get; set; }
         }
 
         public class UpdateBlog 
