@@ -19,13 +19,16 @@ namespace OnionDemo.Query
         async Task<BlogDto> IBlogQuery.Get(Guid id)
         {
             var lookup = new Dictionary<Guid, BlogDto>();
+            
+            var parameters = new DynamicParameters();
+
+            parameters.Add("@Id", id);//, DbType.String, ParameterDirection.Input, customerId.Length);
 
             var sql =
                 @"select blog.*, post.* from Blogs blog
                     left join Posts post on post.BlogId = blog.Id
-                    where blog.Id == @Id";
-
-            var parameters = new {Id = id};
+                    where blog.Id = @Id";
+                       
 
             var connection = await _db.CreateConnectionAsync().ConfigureAwait(false);
             await connection.QueryAsync<BlogDto, PostDto, BlogDto>(sql, (b, p) =>
@@ -35,7 +38,8 @@ namespace OnionDemo.Query
                     lookup.Add(b.Id, blog = b);
                 if (b.Posts == null)
                     b.Posts = new List<PostDto>();
-                b.Posts.Add(p); /* Add posts to blog */
+                if(p != null)
+                    b.Posts.Add(p); /* Add posts to blog */
                 return blog;
             }, parameters);
 

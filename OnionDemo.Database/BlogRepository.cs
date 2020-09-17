@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OnionDemo.Application.Infrastructor;
@@ -35,6 +36,8 @@ namespace OnionDemo.Database
 
         async Task IBlogRepository.Save(Blog blog)
         {
+            if(!_db.Blogs.Any(a => a.Id == blog.Id)) _db.Blogs.Add(blog);
+            
             await _db.SaveChangesAsync();
         }
     }
