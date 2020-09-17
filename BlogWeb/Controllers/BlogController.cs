@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using BlogWeb.Mappers;
 using BlogWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using OnionDemo.Application;
 using OnionDemo.Application.Commands;
 using OnionDemo.Query;
-using OnionDemo.Query.Model;
 
 namespace BlogWeb.Controllers
 {
@@ -24,30 +23,18 @@ namespace BlogWeb.Controllers
         // GET: Blog
         public async Task<IActionResult> Index()
         {
-            var data = await _query.GetAll();
-            var viewModel = Map(data);
+            var viewModel = Mapper.Map(await _query.GetAll());
             return View(viewModel);
         }
 
-        private IEnumerable<BlogViewModel> Map(IEnumerable<BlogDto> data)
-        {
-            throw new NotImplementedException();
-        }
-
-        private BlogViewModel Map(BlogDto data)
-        {
-            throw new NotImplementedException();
-        }
 
         // GET: Blog/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null) return NotFound();
 
-            var data = await _query.Get(id.Value);
-            if (data == null) return NotFound();
-
-            var viewModel = Map(data);
+            var viewModel = Mapper.Map(await _query.Get(id.Value));
+            if (viewModel == null) return NotFound();
 
             return View(viewModel);
         }
@@ -79,9 +66,8 @@ namespace BlogWeb.Controllers
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null) return NotFound();
-            var data = await _query.Get(id.Value);
-            var viewModel = Map(data);
 
+            var viewModel = Mapper.Map(await _query.Get(id.Value));
             if (viewModel == null) return NotFound();
 
             return View(viewModel);
@@ -110,9 +96,7 @@ namespace BlogWeb.Controllers
         {
             if (id == null) return NotFound();
 
-            var data = await _query.Get(id.Value);
-            var viewModel = Map(data);
-
+            var viewModel = Mapper.Map(await _query.Get(id.Value));
             if (viewModel == null) return NotFound();
 
             return View(viewModel);
@@ -128,3 +112,4 @@ namespace BlogWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
     }
+}
