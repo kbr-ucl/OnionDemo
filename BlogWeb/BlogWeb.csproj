@@ -16,6 +16,7 @@
     <ProjectReference Include="..\OnionDemo.Database.Migrations\OnionDemo.Database.Migrations.csproj" />
     <ProjectReference Include="..\OnionDemo.Database\OnionDemo.Database.csproj" />
     <ProjectReference Include="..\OnionDemo.Domain\OnionDemo.Domain.csproj" />
+    <ProjectReference Include="..\OnionDemo.Query\OnionDemo.Query.csproj" />
   </ItemGroup>
 
 </Project>

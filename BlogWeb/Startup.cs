@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -5,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnionDemo.Database;
+using OnionDemo.Query;
 
 namespace BlogWeb
 {
@@ -26,7 +28,12 @@ namespace BlogWeb
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                     x => x.MigrationsAssembly("OnionDemo.Database.Migrations")));
 
-            services.AddControllersWithViews();
+            // Dapper Sql connection
+            services.AddTransient<IDatabaseConnectionFactory>(e =>
+            {
+                return new DatabaseConnectionFactory(Configuration.GetConnectionString("DefaultConnection"));
+            });
+
             services.AddControllersWithViews();
         }
 
