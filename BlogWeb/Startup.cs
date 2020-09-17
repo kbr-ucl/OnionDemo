@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OnionDemo.Application;
 using OnionDemo.Database;
 using OnionDemo.Query;
 
@@ -33,6 +34,10 @@ namespace BlogWeb
             {
                 return new DatabaseConnectionFactory(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            // Command and Query
+            services.AddScoped<IBlogApplicationService, BlogApplicationService>();
+            services.AddScoped<IBlogQueryService, BlogQueryService>();
 
             services.AddControllersWithViews();
         }
