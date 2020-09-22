@@ -9,7 +9,7 @@ namespace Blog.Domain.Model
         private readonly List<Post> _posts;
 
         /// <summary>
-        ///     Anvendes af Entity framework
+        ///     Used only by Entity framework
         /// </summary>
         protected Blog()
         {
@@ -33,7 +33,7 @@ namespace Blog.Domain.Model
         private void Validate()
         {
             // Max 10 posts
-            if (_posts.Count > 10) throw new MaxPostLimitExceeded($"Der er allerede {_posts.Count}");
+            if (_posts.Count > 10) throw new MaxPostLimitExceeded($"Maximum postings limit exceeded. You already has {_posts.Count} postings");
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Blog.Domain.Model
     public class Post
     {
         /// <summary>
-        ///     Anvendes af Entity framework
+        ///     Used only by Entity framework
         /// </summary>
         public Post()
         {

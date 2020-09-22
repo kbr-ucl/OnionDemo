@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sim-project version="12.40" multi-file="no" uid="simp50a081db82b64a4abdf8c7cacae34b81">
+  <meta>
+    <name>OnionDemo</name>
+    <authors>Kaj Steen Bromose</authors>
+    <description />
+  </meta>
+  <counters models="1">
+    <entity-names>
+      <counter>
+        <item-type stereotype="component" type-id="component" type="Component" />
+        <value>5</value>
+      </counter>
+      <counter>
+        <item-type type="Unknown" />
+        <value>2</value>
+      </counter>
+    </entity-names>
+    <entity-ids>
+      <counter>
+        <item-type type-id="group" type="Group" />
+        <value>177</value>
+      </counter>
+      <counter>
+        <item-type type-id="component" type="Component" />
+        <value>6</value>
+      </counter>
+      <counter>
+        <item-type type-id="relationship" type="Association" />
+        <value>6</value>
+      </counter>
+      <counter>
+        <item-type type-id="text" type="Text" />
+        <value>3</value>
+      </counter>
+    </entity-ids>
+    <diagrams>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlComponentDiagram</type>
+        <value>1</value>
+      </counter>
+    </diagrams>
+    <fields />
+  </counters>
+  <alias-groups />
+  <management uid="md-1ed28b9804504831a77f9d215135c538" name="" task-id-sequence="0">
+    <persons>
+      <person id="">
+        <first-name>Kaj Steen</first-name>
+        <last-name>Bromose</last-name>
+        <role />
+        <e-mail>kbr@ucl.dk</e-mail>
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+      </person>
+    </persons>
+    <teams />
+    <sprints />
+    <projects />
+    <modules />
+    <tasks />
+    <to-dos />
+  </management>
+  <glossary id="glsr-ec98d0e67cf848bb9e108b10801f3bdc" />
+  <types default="UML">
+    <type-sets>
+      <type-set file="UmlTypes.xml" />
+    </type-sets>
+    <custom-types />
+  </types>
+  <items />
+  <models>
+    <model id="pdb173e5aace44466b558d7c8b3c9c5a1_759112239" name="Model1" namespace="" order-index="1">
+      <meta>
+        <authors>
+          <author>Kaj Steen Bromose</author>
+        </authors>
+        <description />
+        <creation-date>09/22/2020 18:21:36</creation-date>
+        <change-date>01/01/0001 00:00:00</change-date>
+        <revision-count>0</revision-count>
+        <version />
+      </meta>
+      <abstract-items />
+      <sub-models />
+      <diagram type="uml-component" id="pf5cb0b2e1a3641e3a805a3021ff63497_997035104" name="ComponentDiagram1" order-index="1" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-data="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="0,-5">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author>Kaj Steen Bromose</author>
+          </authors>
+          <description />
+          <creation-date>09/22/2020 18:21:36</creation-date>
+          <change-date>09/22/2020 18:30:44</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="54e95d68094a4af99df1ca20174643eb" cid="CPT001" type="component" name="Blog.Domain" style-class="" change-tracking-state="added" creator="" creation-date="09/22/2020 18:21:59" visibility="package">
+            <stereotypes>
+              <stereotype name="component" />
+            </stereotypes>
+            <stereotype-instances>
+              <stereotype id="54e95d68094a4af99df1ca20174643eb_component_c" type="component" ref="" />
+            </stereotype-instances>
+            <component />
+          </item>
+          <item id="ac505572898d4484a42031a530ba8e0a" cid="CPT002" type="component" name="Blog.Web" style-class="" change-tracking-state="added" creator="" creation-date="09/22/2020 18:22:15" visibility="package">
+            <stereotypes>
+              <stereotype name="component" />
+            </stereotypes>
+            <stereotype-instances>
+              <stereotype id="ac505572898d4484a42031a530ba8e0a_component_c" type="component" ref="" />
+            </stereotype-instances>
+            <component />
+          </item>
+          <item id="3660c11e155649a5b86446f0a69cb54a" cid="CPT003" type="component" name="Blog.Application" style-class="" change-tracking-state="added" creator="" creation-date="09/22/2020 18:22:33" visibility="package">
+            <stereotypes>
+              <stereotype name="component" />
+            </stereotypes>
+            <stereotype-instances>
+              <stereotype id="3660c11e155649a5b86446f0a69cb54a_component_c" type="component" ref="" />
+            </stereotype-instances>
+            <component />
+          </item>
+          <item id="eda24409e050467aa7997735e489a31a" cid="CPT004" type="component" name="Blog.Query" style-class="" change-tracking-state="added" creator="" creation-date="09/22/2020 18:23:16" visibility="package">
+            <stereotypes>
+              <stereotype name="component" />
+            </stereotypes>
+            <stereotype-instances>
+              <stereotype id="eda24409e050467aa7997735e489a31a_component_c" type="component" ref="" />
+            </stereotype-instances>
+            <component />
+          </item>
+          <item id="2c7e131ae7f942b39edf7bf37e7aab51" cid="CPT005" type="component" name="Blog.Database" style-class="" change-tracking-state="added" creator="" creation-date="09/22/2020 18:23:29" visibility="package">
+            <stereotypes>
+              <stereotype name="component" />
+            </stereotypes>
+            <stereotype-instances>
+              <stereotype id="2c7e131ae7f942b39edf7bf37e7aab51_component_c" type="component" ref="" />
+            </stereotype-instances>
+            <component />
+          </item>
+          <item id="989815197c694f6b8f8b0be3c5df9def" cid="REL001" type="relationship" name="Model" style-class="" change-tracking-state="added" creator="" creation-date="09/22/2020 18:24:21" from="3660c11e155649a5b86446f0a69cb54a" to="54e95d68094a4af99df1ca20174643eb" visibility="package">
+            <relation from="3660c11e155649a5b86446f0a69cb54a" to="54e95d68094a4af99df1ca20174643eb" derived="false">
+              <start-role id="umlar-263cead2-d962-4997-8b77-aa74ec1352c9" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="umlar-366c28b5-2f88-43b7-8ca2-a4f77242f3ff" name="" navigability="yes" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="c6f0acc990204098b75261387c1f8544" cid="REL002" type="relationship" name="Model" style-class="" change-tracking-state="added" creator="" creation-date="09/22/2020 18:24:33" from="2c7e131ae7f942b39edf7bf37e7aab51" to="54e95d68094a4af99df1ca20174643eb" visibility="package">
+            <relation from="2c7e131ae7f942b39edf7bf37e7aab51" to="54e95d68094a4af99df1ca20174643eb" derived="false">
+              <start-role id="umlar-eb98969f-f7c5-4311-acec-ff0f89facc2c" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="umlar-ff2ae68f-50e1-44bb-8ff5-d0410e7fda88" name="" navigability="yes" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="2517432834f94906aa379a5f43b5d652" cid="REL003" type="relationship" name="IBlogRepository" style-class="" change-tracking-state="added" creator="" creation-date="09/22/2020 18:24:55" from="2c7e131ae7f942b39edf7bf37e7aab51" to="3660c11e155649a5b86446f0a69cb54a" visibility="package">
+            <relation from="2c7e131ae7f942b39edf7bf37e7aab51" to="3660c11e155649a5b86446f0a69cb54a" derived="false">
+              <start-role id="umlar-30061833-a187-40a4-8ae3-16febe27bef8" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="umlar-25ba1218-3213-4642-bfeb-f1d4ec53626e" name="" navigability="yes" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="09d112753d254572bd657a9df025dfa0" cid="REL004" type="relationship" name="IBlogCommand" style-class="" change-tracking-state="added" creator="" creation-date="09/22/2020 18:26:43" from="ac505572898d4484a42031a530ba8e0a" to="3660c11e155649a5b86446f0a69cb54a" visibility="package">
+            <relation from="ac505572898d4484a42031a530ba8e0a" to="3660c11e155649a5b86446f0a69cb54a" derived="false">
+              <start-role id="umlar-c91fc5fc-d2c6-4add-bd5d-0d76de580fc6" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="umlar-5f65ac71-2a31-4fe8-9d95-2a042f89993a" name="" navigability="yes" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="1e38f4f6b4ef4bebb1f9639707d981f2" cid="REL005" type="relationship" name="IBlogQuery" style-class="" change-tracking-state="added" creator="" creation-date="09/22/2020 18:26:53" from="ac505572898d4484a42031a530ba8e0a" to="eda24409e050467aa7997735e489a31a" visibility="package">
+            <relation from="ac505572898d4484a42031a530ba8e0a" to="eda24409e050467aa7997735e489a31a" derived="false">
+              <start-role id="umlar-7114d366-faf9-4396-a1cf-4e7c0f3ed82a" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="umlar-371635ff-0070-446d-bdbd-9a4c2ec69059" name="" navigability="yes" association-type="association" visibility="private" />
+            </relation>
+          </item>
+        </abstract-items>
+        <layer id="e74ef00bb3734cc1a7a4c7f93f3f097e" name="Default" visible="true" enabled="true" locked="false">
+          <item id="2c7e131ae7f942b39edf7bf37e7aab51" iid="a391d02f9e284e8a96f405186211ced2" show-fields="false" creation-date="09/22/2020 18:23:29" order-index="4" type="entity">
+            <layout ax="615" ay="389" awidth="140" aheight="160" x="615" y="389" width="140" height="160" />
+          </item>
+          <item id="eda24409e050467aa7997735e489a31a" iid="0a9e350146614329ac7930e7d231344a" show-fields="false" creation-date="09/22/2020 18:23:16" order-index="3" type="entity">
+            <layout ax="292" ay="389" awidth="140" aheight="160" x="292" y="389" width="140" height="160" />
+          </item>
+          <item id="3660c11e155649a5b86446f0a69cb54a" iid="c30ac7c2c1ab4aa49cf9814189dd8967" show-fields="false" creation-date="09/22/2020 18:22:33" order-index="2" type="entity">
+            <layout ax="856" ay="103" awidth="140" aheight="160" x="856" y="103" width="140" height="160" />
+          </item>
+          <item id="ac505572898d4484a42031a530ba8e0a" iid="0f62caf8fa6b48a0a46107d3280babf8" show-fields="false" creation-date="09/22/2020 18:22:15" order-index="1" type="entity">
+            <layout ax="292" ay="103" awidth="140" aheight="160" x="292" y="103" width="140" height="160" />
+          </item>
+          <item id="54e95d68094a4af99df1ca20174643eb" iid="0421b3c11a524108ab414bd0567aa2f9" show-fields="false" creation-date="09/22/2020 18:21:59" order-index="0" type="entity">
+            <layout ax="856" ay="389" awidth="140" aheight="160" x="856" y="389" width="140" height="160" />
+          </item>
+          <item id="989815197c694f6b8f8b0be3c5df9def" iid="7816ee57c9f64b3dab82cd11c2954678" creation-date="09/22/2020 18:24:21" order-index="5" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="926" y1="263" x2="926" y2="389" start-border-pos="0.625" end-border-pos="0.125" start-local-pos="70" end-local-pos="70" name-position="35,2">
+              <points>
+                <point x="926" y="263" />
+                <point x="926" y="389" />
+              </points>
+            </layout>
+            <relation from="3660c11e155649a5b86446f0a69cb54a" from-iid="c30ac7c2c1ab4aa49cf9814189dd8967" to="54e95d68094a4af99df1ca20174643eb" to-iid="0421b3c11a524108ab414bd0567aa2f9" />
+          </item>
+          <item id="c6f0acc990204098b75261387c1f8544" iid="332af1c4af8d4492b2910f4b2534e116" creation-date="09/22/2020 18:24:33" order-index="6" type="relation">
+            <layout start-role-position="25,15" start-role-width="50" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="755" y1="469" x2="856" y2="469" start-border-pos="0.875" end-border-pos="0.375" start-local-pos="80" end-local-pos="80" name-position="0,20">
+              <points>
+                <point x="755" y="469" />
+                <point x="856" y="469" />
+              </points>
+            </layout>
+            <relation from="2c7e131ae7f942b39edf7bf37e7aab51" from-iid="a391d02f9e284e8a96f405186211ced2" to="54e95d68094a4af99df1ca20174643eb" to-iid="0421b3c11a524108ab414bd0567aa2f9" />
+          </item>
+          <item id="2517432834f94906aa379a5f43b5d652" iid="2b061b12bee14595a7e70f394ece9923" creation-date="09/22/2020 18:24:55" order-index="7" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="27.93294,-76.78996" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="685" y1="389" x2="882" y2="263" start-border-pos="0.125" end-border-pos="0.703571423888206" start-local-pos="70" end-local-pos="26" name-position="0,20">
+              <points>
+                <point x="685" y="389" />
+                <point x="685" y="329" />
+                <point x="881" y="327" />
+                <point x="882" y="263" />
+              </points>
+            </layout>
+            <relation from="2c7e131ae7f942b39edf7bf37e7aab51" from-iid="a391d02f9e284e8a96f405186211ced2" to="3660c11e155649a5b86446f0a69cb54a" to-iid="c30ac7c2c1ab4aa49cf9814189dd8967" />
+          </item>
+          <item id="09d112753d254572bd657a9df025dfa0" iid="828a25e9522244c3b23158cddd826e85" creation-date="09/22/2020 18:26:43" order-index="8" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="432" y1="183" x2="856" y2="183" start-border-pos="0.375" end-border-pos="0.875" start-local-pos="80" end-local-pos="80" name-position="0,20">
+              <points>
+                <point x="432" y="183" />
+                <point x="856" y="183" />
+              </points>
+            </layout>
+            <relation from="ac505572898d4484a42031a530ba8e0a" from-iid="0f62caf8fa6b48a0a46107d3280babf8" to="3660c11e155649a5b86446f0a69cb54a" to-iid="c30ac7c2c1ab4aa49cf9814189dd8967" />
+          </item>
+          <item id="1e38f4f6b4ef4bebb1f9639707d981f2" iid="28af716645cb4551994321ff20f30ba4" creation-date="09/22/2020 18:26:53" order-index="9" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="362" y1="263" x2="362" y2="389" start-border-pos="0.625" end-border-pos="0.125" start-local-pos="70" end-local-pos="70" name-position="55,2">
+              <points>
+                <point x="362" y="263" />
+                <point x="362" y="389" />
+              </points>
+            </layout>
+            <relation from="ac505572898d4484a42031a530ba8e0a" from-iid="0f62caf8fa6b48a0a46107d3280babf8" to="eda24409e050467aa7997735e489a31a" to-iid="0a9e350146614329ac7930e7d231344a" />
+          </item>
+        </layer>
+      </diagram>
+    </model>
+  </models>
+</sim-project>
