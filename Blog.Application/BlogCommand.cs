@@ -18,7 +18,7 @@ namespace Blog.Application
         async Task IBlogCommand.Execute(Command.AddPostToBlog command)
         {
             var blog = await _repository.Load(command.BlogId);
-            blog.AddPost(new Post(command.Post.Id));
+            blog.AddPost(new Post(command.Post.Id, command.BlogId, command.Post.Title, command.Post.Body));
             await _repository.Save(blog);
         }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BlogWeb.Models
+namespace Blog.Web.Models
 {
     public class BlogViewModel
     {

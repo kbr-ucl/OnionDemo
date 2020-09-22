@@ -22,4 +22,8 @@
     <ProjectReference Include="..\Blog.Query\Blog.Query.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Post\" />
+  </ItemGroup>
+
 </Project>

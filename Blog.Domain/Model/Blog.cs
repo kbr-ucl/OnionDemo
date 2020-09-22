@@ -13,6 +13,7 @@ namespace Blog.Domain.Model
         /// </summary>
         protected Blog()
         {
+            _posts = new List<Post>();
         }
 
         public Blog(Guid id)
