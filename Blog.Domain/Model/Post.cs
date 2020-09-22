@@ -17,5 +17,9 @@ namespace Blog.Domain.Model
         }
 
         public Guid Id { get; }
+
+        public string Body { get; private set; }
+
+        public string Title { get; private set; }
     }
 }
