@@ -21,12 +21,12 @@ namespace Blog.Application.Commands
         {
         }
 
-        public class UpdateBlog 
+        public class UpdateBlog
         {
             public Guid BlogId { get; set; }
         }
 
-        public class DeleteBlog 
+        public class DeleteBlog
         {
             public Guid BlogId { get; set; }
         }

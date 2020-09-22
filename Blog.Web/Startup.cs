@@ -1,14 +1,13 @@
-using System.Reflection.Metadata.Ecma335;
+using Blog.Application;
+using Blog.Application.Infrastructor;
+using Blog.Database;
+using Blog.Query;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Blog.Application;
-using Blog.Application.Infrastructor;
-using Blog.Database;
-using Blog.Query;
 
 namespace BlogWeb
 {

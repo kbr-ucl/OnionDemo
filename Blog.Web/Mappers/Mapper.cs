@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BlogWeb.Models;
 using Blog.Query.Model;
+using BlogWeb.Models;
 
 namespace BlogWeb.Mappers
 {

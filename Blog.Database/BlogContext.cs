@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
-using Microsoft.EntityFrameworkCore;
 using Blog.Domain.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Database
 {
@@ -18,6 +18,5 @@ namespace Blog.Database
             //this will apply configs from separate classes which implemented IEntityTypeConfiguration<T>
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
-
     }
 }
