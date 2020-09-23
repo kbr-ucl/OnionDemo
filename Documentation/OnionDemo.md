@@ -311,3 +311,49 @@ SqLite start enviroment:
 
 ![sqlite database update](Img/sqlite-database-update.png)
 
+
+# **Iteration-3 (edit and delete posts)**
+
+## Commands
+```c#
+    public class Command
+    {
+        public class CreatePost
+        {
+            public Guid BlogId { get; set; }
+            public PostDto Post { get; set; }
+        }
+
+        // iteration 3
+        public class UpdatePost
+        {
+            public Guid BlogId { get; set; }
+            public PostDto Post { get; set; }
+        }
+
+        // iteration 3
+        public class DeletePost
+        {
+            public Guid BlogId { get; set; }
+            public PostDto Post { get; set; }
+        }
+
+```
+## IBlogCommand
+
+```c#
+    public interface IBlogCommand
+    {
+        Task Execute(Command.CreatePost command);
+        Task Execute(Command.CreateBlog command);
+
+        // iteration 3
+        Task Execute(Command.UpdatePost command);
+
+        //TODO - iteration 4
+        //    Task Execute(Command.UpdateBlog command);
+        //    Task Execute(Command.DeleteBlog command);
+    }
+```
+
+## BlogCommand

@@ -28,7 +28,7 @@ namespace Blog.Database.Repository
 
         async Task<Domain.Model.Blog> IBlogRepository.Load(Guid id)
         {
-            var found = await _db.Blogs.FirstOrDefaultAsync(a => a.Id == id);
+            var found = await _db.Blogs.Include(a => a.Posts).FirstOrDefaultAsync(a => a.Id == id);
             if (found == null) throw new Exception($"Blog not found (id: {id}");
 
             return found;

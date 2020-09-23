@@ -83,10 +83,9 @@ namespace Blog.Web.Controllers
             if (id != blog.Id) return NotFound();
 
             if (ModelState.IsValid)
-            {
-                await _command.Execute(new Command.UpdateBlog {BlogId = id});
+                //TODO - iteration 4
+                //await _command.Execute(new Command.UpdateBlog {BlogId = id});
                 return RedirectToAction(nameof(Index));
-            }
 
             return View(blog);
         }
@@ -108,7 +107,8 @@ namespace Blog.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            await _command.Execute(new Command.DeleteBlog {BlogId = id});
+            //TODO - iteration 4
+            // await _command.Execute(new Command.DeleteBlog {BlogId = id});
             return RedirectToAction(nameof(Index));
         }
     }

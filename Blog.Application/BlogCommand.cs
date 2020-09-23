@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Blog.Application.Commands;
 using Blog.Application.Infrastructor;
@@ -15,17 +16,10 @@ namespace Blog.Application
             _repository = repository;
         }
 
-        async Task IBlogCommand.Execute(Command.AddPostToBlog command)
+        async Task IBlogCommand.Execute(Command.CreatePost command)
         {
             var blog = await _repository.Load(command.BlogId);
             blog.AddPost(new Post(command.Post.Id, command.BlogId, command.Post.Title, command.Post.Body));
-            await _repository.Save(blog);
-        }
-
-        async Task IBlogCommand.Execute(Command.UpdatePost command)
-        {
-            var blog = await _repository.Load(command.BlogId);
-
             await _repository.Save(blog);
         }
 
@@ -35,18 +29,37 @@ namespace Blog.Application
             await _repository.Save(blog);
         }
 
-        async Task IBlogCommand.Execute(Command.UpdateBlog command)
+        // iteration 3
+        async Task IBlogCommand.Execute(Command.UpdatePost command)
         {
             var blog = await _repository.Load(command.BlogId);
-
+            var post = blog.Posts.FirstOrDefault(a => a.Id == command.Post.Id);
+            post.UpdateTitle(command.Post.Title);
+            post.UpdateBody(command.Post.Body);
             await _repository.Save(blog);
         }
 
-        async Task IBlogCommand.Execute(Command.DeleteBlog command)
+        // iteration 3
+        async Task IBlogCommand.Execute(Command.DeletePost command)
         {
             var blog = await _repository.Load(command.BlogId);
-
-            await _repository.Delete(blog);
+            blog.DeletePost(command.Post.Id);
+            await _repository.Save(blog);
         }
+
+        //TODO - iteration 4
+        //async Task IBlogCommand.Execute(Command.UpdateBlog command)
+        //{
+        //    var blog = await _repository.Load(command.BlogId);
+
+        //    await _repository.Save(blog);
+        //}
+
+        //async Task IBlogCommand.Execute(Command.DeleteBlog command)
+        //{
+        //    var blog = await _repository.Load(command.BlogId);
+
+        //    await _repository.Delete(blog);
+        //}
     }
 }
