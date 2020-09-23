@@ -147,18 +147,23 @@ From appsettings.json
 
 ## Initial migration
 Add-Migration:
+
 ![Add-Migration](Img/Add-Migration.png)
 
 Migration project:
+
 ![Blog.Database.Migration](Img/Blog-Database-Migration.png)
 
 Update-Database:
+
 ![Update-Database](Img/Update-Database.png)
 
 SQL database:
+
 ![SQL-Database](Img/SQL-Database.png)
 
 Migrations history
+
 ![EF-Migrations-History](Img/EFMigrationsHistory.png)
 
 # **Second iteration**
@@ -188,16 +193,121 @@ public class Post
 ```
 ## Second iteration - Migration
 Add-Migration:
+
 ![Add-Migration](Img/Add-Migration-Second_Iteration.png)
 
 Migration project:
+
 ![Blog.Database.Migration](Img/Blog-Database-Migration-Second-Migration.png)
 
 Update-Database:
+
 ![Update-Database](Img/Update-Database-Second-Iteration.png)
 
 SQL database:
+
 ![SQL-Database](Img/SQL-Database-Second-Iteration.png)
 
 Migrations history
+
 ![EF-Migrations-History](Img/EFMigrationsHistory-Second-Iteration.png)
+
+# **Sql server and SqLite**
+
+launchSettings:
+
+![launchSettings.json](Img/launchSettings.png)
+
+launchSettings:
+
+![launchSettings.json](Img/launchSettings.png)
+
+
+Program.cs
+```c#
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            var assemblyName = typeof(Startup).GetTypeInfo().Assembly.FullName;
+            return Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup(assemblyName); });
+        }
+    }
+```
+
+Select start enviroment:
+
+![Select start enviroment](Img/select-start-enviroment.png)
+
+## Sql server
+
+appsettings.json
+
+Startup.cs
+
+## SqLite
+SqLite start enviroment:
+
+![Select start enviroment](Img/multiple-env.png)
+
+appsettings.SqLite.json:
+
+```json
+    {
+      "ConnectionStrings": {
+        "DefaultConnection": "DataSource = blog.db;"
+      },
+      "Logging": {
+        "LogLevel": {
+          "Default": "Information",
+          "Microsoft": "Warning",
+          "Microsoft.Hosting.Lifetime": "Information"
+        }
+      },
+      "AllowedHosts": "*"
+    }
+```
+StartupSqLite.cs:
+
+```c#
+        public void ConfigureServices(IServiceCollection services)
+        {
+
+            // Add-Migration Initial -context Blog.Database.BlogContext -Project Blog.Database.Migrations
+            // $env:ASPNETCORE_ENVIRONMENT='SqLite'
+            // Update-Database Initial -context Blog.Database.BlogContext -Project Blog.Database.Migrations
+            services.AddDbContext<BlogContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"),
+                    x => x.MigrationsAssembly("Blog.Database.Migrations")));
+
+            // Command and Query
+            services.AddScoped<IBlogCommand, BlogCommand>();
+            services.AddScoped<IBlogQuery, BlogQuery>();
+            services.AddScoped<IPostQuery, PostQuery>();
+
+            // Repository
+            services.AddScoped<IBlogRepository, BlogRepository>();
+
+            services.AddControllersWithViews();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            app.UseDeveloperExceptionPage();
+```
+
+### SqLite database migration
+
+:
+
+SqLite start enviroment:
+
+![sqlite database update](Img/sqlite-database-update.png)
+
