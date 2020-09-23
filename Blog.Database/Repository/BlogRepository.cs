@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Blog.Application.Commands;
 using Blog.Application.Infrastructor;
 using Blog.Domain.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace Blog.Database
+namespace Blog.Database.Repository
 {
     public class BlogRepository : IBlogRepository
     {

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Blog.Application;
 using Blog.Application.Commands;
-using Blog.Query;
+using Blog.Application.Queries;
 using Blog.Web.Mappers;
 using Blog.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,11 +11,11 @@ namespace Blog.Web.Controllers
 {
     public class PostController : Controller
     {
-        private readonly IBlogQuery _query;
         private readonly IBlogCommand _command;
+        private readonly IPostQuery _query;
 
 
-        public PostController(IBlogQuery query, IBlogCommand command)
+        public PostController(IPostQuery query, IBlogCommand command)
         {
             _query = query;
             _command = command;
@@ -24,8 +24,8 @@ namespace Blog.Web.Controllers
         // GET
         public async Task<IActionResult> Index(Guid blogId)
         {
-            var data = await _query.Get(blogId);
-            var viewModel    = Mapper.Map(data.Posts);
+            var data = await _query.GetAllByBlog(blogId);
+            var viewModel = Mapper.Map(data);
             ViewData["BlogId"] = blogId;
             return View(viewModel);
         }
@@ -45,8 +45,8 @@ namespace Blog.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _command.Execute(new Command.AddPostToBlog{BlogId = post.BlogId, Post = Mapper.Map(post)});
-                return RedirectToAction(nameof(Index), new { blogId = post.BlogId });
+                await _command.Execute(new Command.AddPostToBlog {BlogId = post.BlogId, Post = Mapper.Map(post)});
+                return RedirectToAction(nameof(Index), new {blogId = post.BlogId});
             }
 
             return View(post);

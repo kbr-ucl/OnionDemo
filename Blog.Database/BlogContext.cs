@@ -13,6 +13,7 @@ namespace Blog.Database
         public DbSet<Post> Posts { get; set; }
         public DbSet<Domain.Model.Blog> Blogs { get; set; }
 
+        // https://github.com/dotnet/efcore/issues/14336
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //this will apply configs from separate classes which implemented IEntityTypeConfiguration<T>
