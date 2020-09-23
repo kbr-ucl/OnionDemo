@@ -14,8 +14,10 @@ namespace Blog.Application
         // iteration 3
         Task Execute(Command.DeletePost deletePost);
 
-        //TODO - iteration 4
-        //    Task Execute(Command.UpdateBlog command);
-        //    Task Execute(Command.DeleteBlog command);
+        //TODO: Later
+        //Task Execute(Command.UpdateBlog command);
+
+        // iteration 4
+        Task Execute(Command.DeleteBlog command);
     }
 }

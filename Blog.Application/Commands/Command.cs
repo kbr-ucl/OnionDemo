@@ -29,16 +29,16 @@ namespace Blog.Application.Commands
         {
         }
 
-        //TODO - iteration 4
+        //TODO: Later
         //public class UpdateBlog
         //{
         //    public Guid BlogId { get; set; }
         //}
 
-        //// iteration 4
-        //public class DeleteBlog
-        //{
-        //    public Guid BlogId { get; set; }
-        //}
+        // iteration 4
+        public class DeleteBlog
+        {
+            public Guid BlogId { get; set; }
+        }
     }
 }

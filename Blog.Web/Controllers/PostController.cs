@@ -100,7 +100,7 @@ namespace Blog.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(PostViewModel post)
         {
-            //TODO - iteration 4
+            // iteration 4
             await _command.Execute(new Command.DeletePost
                 {BlogId = post.BlogId, Post = new PostDto {Id = post.Id, Title = post.Title, Body = post.Body}});
             return RedirectToAction(nameof(Index), new {blogId = post.BlogId});

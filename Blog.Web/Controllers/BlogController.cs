@@ -62,33 +62,37 @@ namespace Blog.Web.Controllers
             return View(blog);
         }
 
-        // GET: Blog/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
-        {
-            if (id == null) return NotFound();
+        //TODO: Later
+        //// GET: Blog/Edit/5
+        //public async Task<IActionResult> Edit(Guid? id)
+        //{
+        //    if (id == null) return NotFound();
 
-            var viewModel = Mapper.Map(await _query.Get(id.Value));
-            if (viewModel == null) return NotFound();
+        //    var viewModel = Mapper.Map(await _query.Get(id.Value));
+        //    if (viewModel == null) return NotFound();
 
-            return View(viewModel);
-        }
+        //    return View(viewModel);
+        //}
 
-        // POST: Blog/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id")] BlogViewModel blog)
-        {
-            if (id != blog.Id) return NotFound();
+        //TODO: Later
+        //// POST: Blog/Edit/5
+        //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        //// more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(Guid id, [Bind("Id")] BlogViewModel blog)
+        //{
+        //    if (id != blog.Id) return NotFound();
 
-            if (ModelState.IsValid)
-                //TODO - iteration 4
-                //await _command.Execute(new Command.UpdateBlog {BlogId = id});
-                return RedirectToAction(nameof(Index));
+        //    if (ModelState.IsValid)
+        //    {
+        //        // iteration 4
+        //        await _command.Execute(new Command.UpdateBlog {BlogId = id});
+        //        return RedirectToAction(nameof(Index));
+        //    }
 
-            return View(blog);
-        }
+        //    return View(blog);
+        //}
 
         // GET: Blog/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
@@ -107,8 +111,8 @@ namespace Blog.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            //TODO - iteration 4
-            // await _command.Execute(new Command.DeleteBlog {BlogId = id});
+            // iteration 4
+            await _command.Execute(new Command.DeleteBlog {BlogId = id});
             return RedirectToAction(nameof(Index));
         }
     }

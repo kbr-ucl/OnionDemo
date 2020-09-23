@@ -47,7 +47,7 @@ namespace Blog.Application
             await _repository.Save(blog);
         }
 
-        //TODO - iteration 4
+        //TODO: Later
         //async Task IBlogCommand.Execute(Command.UpdateBlog command)
         //{
         //    var blog = await _repository.Load(command.BlogId);
@@ -55,11 +55,12 @@ namespace Blog.Application
         //    await _repository.Save(blog);
         //}
 
-        //async Task IBlogCommand.Execute(Command.DeleteBlog command)
-        //{
-        //    var blog = await _repository.Load(command.BlogId);
+        // iteration 4
+        async Task IBlogCommand.Execute(Command.DeleteBlog command)
+        {
+            var blog = await _repository.Load(command.BlogId);
 
-        //    await _repository.Delete(blog);
-        //}
+            await _repository.Delete(blog);
+        }
     }
 }
