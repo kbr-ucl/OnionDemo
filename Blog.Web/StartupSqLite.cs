@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace Blog.Web
 {
@@ -25,7 +24,6 @@ namespace Blog.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             // Add-Migration Initial -context Blog.Database.BlogContext -Project Blog.Database.Migrations
             // $env:ASPNETCORE_ENVIRONMENT='SqLite'
             // Update-Database Initial -context Blog.Database.BlogContext -Project Blog.Database.Migrations
@@ -48,7 +46,7 @@ namespace Blog.Web
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseDeveloperExceptionPage();
-            
+
             app.UseStaticFiles();
 
             app.UseRouting();

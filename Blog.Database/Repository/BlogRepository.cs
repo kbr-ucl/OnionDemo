@@ -21,6 +21,7 @@ namespace Blog.Database.Repository
             var found = await _db.Blogs.FirstOrDefaultAsync(a => a.Id == blog.Id);
             if (found == null) throw new Exception($"Blog not found (id: {blog.Id}");
 
+            found.Posts.ToList().ForEach(a => _db.Posts.Remove(a));
             _db.Blogs.Remove(found);
 
             await _db.SaveChangesAsync();
