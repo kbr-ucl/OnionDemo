@@ -17,9 +17,23 @@ namespace Blog.Domain.Model
 
         public Guid BlogId { get; }
 
-        public string Body { get; }
+        public string Body { get; private set; }
 
-        public string Title { get; }
+        public string Title { get; private set; }
+
+
+        public void UpdateTitle(string title)
+        {
+            Title = title;
+            Validate();
+        }
+
+        public void UpdateBody(string body)
+        {
+            Body = body;
+            Validate();
+        }
+
 
         private void Validate()
         {

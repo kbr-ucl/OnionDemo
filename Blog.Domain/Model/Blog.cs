@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Blog.Domain.BlogExceptions;
 
 namespace Blog.Domain.Model
@@ -28,6 +29,13 @@ namespace Blog.Domain.Model
             if (_posts.Count > 10)
                 throw new MaxPostLimitExceeded(
                     $"Maximum postings limit exceeded. You already has {_posts.Count} postings");
+        }
+
+        public void DeletePost(Guid postId)
+        {
+            var toDelete = _posts.FirstOrDefault(a => a.Id == postId);
+            _posts.Remove(toDelete);
+            Validate();
         }
     }
 }
