@@ -1,26 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Blog.Domain.BlogExceptions;
 
 namespace Blog.Domain.Model
 {
     public class Blog
     {
-        private readonly List<Post> _posts;
-
-        /// <summary>
-        ///     Used only by Entity framework
-        /// </summary>
-        protected Blog()
-        {
-            _posts = new List<Post>();
-        }
+        private readonly List<Post> _posts = new List<Post>();
 
         public Blog(Guid id)
         {
             Id = id;
-            _posts = new List<Post>();
         }
 
         public Guid Id { get; }
@@ -35,10 +25,9 @@ namespace Blog.Domain.Model
         private void Validate()
         {
             // Max 10 posts
-            if (_posts.Count > 10) throw new MaxPostLimitExceeded($"Maximum postings limit exceeded. You already has {_posts.Count} postings");
-
-
+            if (_posts.Count > 10)
+                throw new MaxPostLimitExceeded(
+                    $"Maximum postings limit exceeded. You already has {_posts.Count} postings");
         }
-
     }
 }

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Blog.Application;
 using Blog.Application.Commands;
-using Blog.Query;
+using Blog.Application.Queries;
 using Blog.Web.Mappers;
 using Blog.Web.Models;
 using Microsoft.AspNetCore.Mvc;

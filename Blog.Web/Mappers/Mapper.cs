@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Blog.Query.Model;
+using Blog.Application.Queries.Model;
 using Blog.Web.Models;
 
 namespace Blog.Web.Mappers
@@ -10,9 +10,9 @@ namespace Blog.Web.Mappers
     {
         public static IEnumerable<BlogViewModel> Map(IEnumerable<BlogDto> data)
         {
-            if (data == null) return null;
-
             var res = new List<BlogViewModel>();
+            if (data == null) return res;
+
             data.ToList().ForEach(a => res.Add(Map(a)));
             return res;
         }
@@ -24,11 +24,11 @@ namespace Blog.Web.Mappers
             return new BlogViewModel {Id = data.Id, Posts = new List<PostViewModel>(Map(data.Posts))};
         }
 
-        public static IEnumerable<PostViewModel> Map(List<PostDto> data)
+        public static IEnumerable<PostViewModel> Map(IEnumerable<PostDto> data)
         {
-            if (data == null) return null;
-
             var res = new List<PostViewModel>();
+            if (data == null) return res;
+
             data.ToList().ForEach(a => res.Add(Map(a)));
             return res;
         }

@@ -1,7 +1,9 @@
 using Blog.Application;
 using Blog.Application.Infrastructor;
+using Blog.Application.Queries;
 using Blog.Database;
-using Blog.Query;
+using Blog.Database.Query;
+using Blog.Database.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -29,15 +31,10 @@ namespace Blog.Web
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                     x => x.MigrationsAssembly("Blog.Database.Migrations")));
 
-            // Dapper Sql connection
-            services.AddTransient<IDatabaseConnectionFactory>(e =>
-            {
-                return new DatabaseConnectionFactory(Configuration.GetConnectionString("DefaultConnection"));
-            });
-
             // Command and Query
             services.AddScoped<IBlogCommand, BlogCommand>();
             services.AddScoped<IBlogQuery, BlogQuery>();
+            services.AddScoped<IPostQuery, PostQuery>();
 
             // Repository
             services.AddScoped<IBlogRepository, BlogRepository>();
