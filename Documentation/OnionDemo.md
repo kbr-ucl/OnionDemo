@@ -1,9 +1,9 @@
-
-
-# **Onion architecture**
-
+# **Architecture**
+## **Onion architecture**
 ![Onion architecture](Img/Onion-Architecture.png)
 
+## **CQRS architecture**
+![CQRS](Img/CQRS-01.png)
 ## **Blog architecture**
 
 ![Blog architecture](Img/Componentdiagram1.png)
