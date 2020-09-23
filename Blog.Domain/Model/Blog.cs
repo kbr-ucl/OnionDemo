@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Blog.Domain.BlogExceptions;
 
 namespace Blog.Domain.Model
@@ -35,6 +36,9 @@ namespace Blog.Domain.Model
         {
             // Max 10 posts
             if (_posts.Count > 10) throw new MaxPostLimitExceeded($"Maximum postings limit exceeded. You already has {_posts.Count} postings");
+
+
         }
+
     }
 }

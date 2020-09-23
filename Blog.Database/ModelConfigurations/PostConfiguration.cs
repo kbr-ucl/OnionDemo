@@ -9,6 +9,7 @@ namespace Blog.Database.ModelConfigurations
         public void Configure(EntityTypeBuilder<Post> builder)
         {
             builder.HasKey(a => a.Id);
+            builder.Property(a => a.Title).HasMaxLength(50);
         }
     }
 }
