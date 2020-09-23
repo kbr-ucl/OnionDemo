@@ -16,6 +16,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Application", "Blog.Application\Blog.Application.csproj", "{73030089-3F60-4FA4-8871-6744B858B935}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{9371698B-DACF-49E1-ADB6-95DDCEE61ACC}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\OnionDemo.md = Documentation\OnionDemo.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3D35B070-A16B-4E9A-9037-35AAD6D834BC}"
 	ProjectSection(SolutionItems) = preProject
