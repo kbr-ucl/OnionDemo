@@ -26,7 +26,7 @@ namespace BlogWeb
             // Add-Migration Initial -context Blog.Database.BlogContext -Project Blog.Database.Migrations
             // Update-Database Initial -context Blog.Database.BlogContext -Project Blog.Database.Migrations
             services.AddDbContext<BlogContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"),
                     x => x.MigrationsAssembly("Blog.Database.Migrations")));
 
             // Dapper Sql connection
