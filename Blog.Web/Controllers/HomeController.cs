@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
-using BlogWeb.Models;
+using Blog.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace BlogWeb.Controllers
+namespace Blog.Web.Controllers
 {
     public class HomeController : Controller
     {

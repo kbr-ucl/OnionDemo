@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Blog.Application.Commands;
 using Blog.Application.Infrastructor;
+using Blog.Domain.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Database
@@ -36,8 +38,13 @@ namespace Blog.Database
         async Task IBlogRepository.Save(Domain.Model.Blog blog)
         {
             if (!_db.Blogs.Any(a => a.Id == blog.Id)) _db.Blogs.Add(blog);
-
+            blog.Posts.ToList().ForEach(a => AddPost(a));
             await _db.SaveChangesAsync();
+        }
+
+        private void AddPost(Post post)
+        {
+            if (!_db.Posts.Any(a => a.Id == post.Id)) _db.Posts.Add(post);
         }
     }
 }

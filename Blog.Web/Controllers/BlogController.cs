@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Blog.Application;
 using Blog.Application.Commands;
 using Blog.Query;
-using BlogWeb.Mappers;
-using BlogWeb.Models;
+using Blog.Web.Mappers;
+using Blog.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlogWeb.Controllers
+namespace Blog.Web.Controllers
 {
     public class BlogController : Controller
     {

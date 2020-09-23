@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace BlogWeb
+namespace Blog.Web
 {
     public class Startup
     {
@@ -62,7 +62,7 @@ namespace BlogWeb
             {
                 endpoints.MapControllerRoute(
                     "default",
-                    "{controller=Home}/{action=Index}/{id?}");
+                    "{controller=Blog}/{action=Index}/{id?}");
             });
         }
     }

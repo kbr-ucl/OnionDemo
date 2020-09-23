@@ -1,7 +1,9 @@
-# **Onion architecture**
-
+# **Architecture**
+## **Onion architecture**
 ![Onion architecture](Img/Onion-Architecture.png)
 
+## **CQRS architecture**
+![CQRS](Img/CQRS-01.png)
 ## **Blog architecture**
 
 ![Blog architecture](Img/Componentdiagram1.png)
@@ -158,3 +160,44 @@ SQL database:
 
 Migrations history
 ![EF-Migrations-History](Img/EFMigrationsHistory.png)
+
+# **Second iteration**
+## The model
+
+```c#
+public class Post
+{
+    /// <summary>
+    ///     Used only by Entity framework
+    /// </summary>
+    public Post()
+    {
+    }
+
+    public Post(Guid id)
+    {
+        Id = id;
+    }
+
+    public Guid Id { get; }
+
+    public string Body { get; private set; }
+
+    public string Title { get; private set; }
+}
+```
+## Second iteration - Migration
+Add-Migration:
+![Add-Migration](Img/Add-Migration-Second_Iteration.png)
+
+Migration project:
+![Blog.Database.Migration](Img/Blog-Database-Migration-Second-Migration.png)
+
+Update-Database:
+![Update-Database](Img/Update-Database-Second-Iteration.png)
+
+SQL database:
+![SQL-Database](Img/SQL-Database-Second-Iteration.png)
+
+Migrations history
+![EF-Migrations-History](Img/EFMigrationsHistory-Second-Iteration.png)

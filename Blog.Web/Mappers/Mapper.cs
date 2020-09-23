@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Blog.Query.Model;
-using BlogWeb.Models;
+using Blog.Web.Models;
 
-namespace BlogWeb.Mappers
+namespace Blog.Web.Mappers
 {
     public class Mapper
     {
@@ -39,8 +40,15 @@ namespace BlogWeb.Mappers
             return new PostViewModel
             {
                 BlogId = data.BlogId,
-                Id = data.Id
+                Id = data.Id,
+                Body = data.Body,
+                Title = data.Title
             };
+        }
+
+        public static Application.Dto.PostDto Map(PostViewModel post)
+        {
+            return new Application.Dto.PostDto {Id = Guid.NewGuid(), Title = post.Title, Body = post.Body};
         }
     }
 }
