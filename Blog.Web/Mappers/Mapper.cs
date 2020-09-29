@@ -42,7 +42,8 @@ namespace Blog.Web.Mappers
                 BlogId = data.BlogId,
                 Id = data.Id,
                 Body = data.Body,
-                Title = data.Title
+                Title = data.Title,
+                RowVersion = data.RowVersion
             };
         }
 

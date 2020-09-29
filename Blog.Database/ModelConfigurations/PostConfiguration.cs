@@ -12,6 +12,7 @@ namespace Blog.Database.ModelConfigurations
             builder.Property(a => a.Title).HasMaxLength(50);
             builder.Property(a => a.BlogId);
             builder.Property(a => a.Body);
+            builder.Property(a => a.RowVersion).IsRowVersion();
         }
     }
 }

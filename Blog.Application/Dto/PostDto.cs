@@ -9,5 +9,7 @@ namespace Blog.Application.Dto
         public string Body { get; set; }
 
         public string Title { get; set; }
+
+        public byte[] RowVersion { get; set; }
     }
 }

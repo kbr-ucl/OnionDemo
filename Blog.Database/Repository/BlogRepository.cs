@@ -35,10 +35,19 @@ namespace Blog.Database.Repository
             return found;
         }
 
-        async Task IBlogRepository.Save(Domain.Model.Blog blog)
+        async Task IBlogRepository.Save(Domain.Model.Blog blog, byte[] rowVersion)
         {
-            if (!_db.Blogs.Any(a => a.Id == blog.Id)) _db.Blogs.Add(blog);
-            blog.Posts.ToList().ForEach(a => AddPost(a));
+            if (rowVersion == null)
+            {
+                if (!_db.Blogs.Any(a => a.Id == blog.Id)) _db.Blogs.Add(blog);
+                blog.Posts.ToList().ForEach(a => AddPost(a));
+            }
+            else
+            {
+                var changedPost = blog.Posts.FirstOrDefault();
+                if (changedPost != null) _db.Entry(changedPost).OriginalValues["RowVersion"] = rowVersion;
+            }
+
             await _db.SaveChangesAsync();
         }
 

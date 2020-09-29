@@ -20,7 +20,7 @@ namespace Blog.Database.Query
         async Task<PostDto> IPostQuery.Get(Guid id)
         {
             return await _db.Posts.AsNoTracking()
-                .Select(a => new PostDto {Id = a.Id, Title = a.Title, BlogId = a.BlogId, Body = a.Body})
+                .Select(a => new PostDto {Id = a.Id, Title = a.Title, BlogId = a.BlogId, Body = a.Body, RowVersion = a.RowVersion})
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
 
@@ -28,7 +28,7 @@ namespace Blog.Database.Query
         async Task<IEnumerable<PostDto>> IPostQuery.GetAllByBlog(Guid blogId)
         {
             return await _db.Posts.AsNoTracking().Where(a => a.BlogId == blogId)
-                .Select(a => new PostDto {Id = a.Id, Title = a.Title, BlogId = a.BlogId, Body = a.Body}).ToListAsync();
+                .Select(a => new PostDto {Id = a.Id, Title = a.Title, BlogId = a.BlogId, Body = a.Body, RowVersion = a.RowVersion }).ToListAsync();
         }
     }
 }

@@ -30,13 +30,14 @@ namespace Blog.Application
         }
 
         // iteration 3
+        // iteration 4
         async Task IBlogCommand.Execute(Command.UpdatePost command)
         {
             var blog = await _repository.Load(command.BlogId);
-            var post = blog.Posts.FirstOrDefault(a => a.Id == command.Post.Id);
+            var post = blog.Posts.First(a => a.Id == command.Post.Id);
             post.UpdateTitle(command.Post.Title);
             post.UpdateBody(command.Post.Body);
-            await _repository.Save(blog);
+            await _repository.Save(blog, command.Post.RowVersion);
         }
 
         // iteration 3

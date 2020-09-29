@@ -20,6 +20,7 @@ namespace Blog.Domain.Model
         public string Body { get; private set; }
 
         public string Title { get; private set; }
+        public byte[] RowVersion { get; set; }
 
 
         public void UpdateTitle(string title)

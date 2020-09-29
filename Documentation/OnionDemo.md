@@ -357,3 +357,215 @@ SqLite start enviroment:
 ```
 
 ## BlogCommand
+
+# **Iteration-4 (optimistic concurrency)**
+
+
+## Model
+```c#
+    public class Post
+    {
+        public Post(Guid id, Guid blogId, string title, string body)
+        {
+            Id = id;
+            BlogId = blogId;
+            Title = title;
+            Body = body;
+            Validate();
+        }
+
+        public Guid Id { get; }
+    
+        public Guid BlogId { get; }
+    
+        public string Body { get; private set; }
+    
+        public string Title { get; private set; }
+    
+        public byte[] RowVersion { get; set; }
+```
+
+```c#
+    public class PostDto
+    {
+        public Guid Id { get; set; }
+        public Guid BlogId { get; set; }
+
+        public string Body { get; set; }
+
+        public string Title { get; set; }
+        public byte[] RowVersion { get; set; }
+    }
+```
+
+## Application service
+
+BlogCommand:
+
+```c#
+        // iteration 3
+        // iteration 4
+        async Task IBlogCommand.Execute(Command.UpdatePost command)
+        {
+            var blog = await _repository.Load(command.BlogId);
+            var post = blog.Posts.First(a => a.Id == command.Post.Id);
+            post.UpdateTitle(command.Post.Title);
+            post.UpdateBody(command.Post.Body);
+            await _repository.Save(blog, command.Post.RowVersion);
+        }
+```
+
+```c#
+    public class PostQuery : IPostQuery
+    {
+        private readonly BlogContext _db;
+
+        public PostQuery(BlogContext db)
+        {
+            _db = db;
+        }
+
+        async Task<PostDto> IPostQuery.Get(Guid id)
+        {
+            return await _db.Posts.AsNoTracking()
+                .Select(a => new PostDto {Id = a.Id, Title = a.Title, BlogId = a.BlogId, Body = a.Body, RowVersion = a.RowVersion})
+                .FirstOrDefaultAsync(a => a.Id == id);
+        }
+
+
+        async Task<IEnumerable<PostDto>> IPostQuery.GetAllByBlog(Guid blogId)
+        {
+            return await _db.Posts.AsNoTracking().Where(a => a.BlogId == blogId)
+                .Select(a => new PostDto {Id = a.Id, Title = a.Title, BlogId = a.BlogId, Body = a.Body, RowVersion = a.RowVersion }).ToListAsync();
+        }
+    }
+```
+
+## Infrastructure
+
+
+## Database
+```c#
+    public class PostConfiguration : IEntityTypeConfiguration<Post>
+    {
+        public void Configure(EntityTypeBuilder<Post> builder)
+        {
+            builder.HasKey(a => a.Id);
+            builder.Property(a => a.Title).HasMaxLength(50);
+            builder.Property(a => a.BlogId);
+            builder.Property(a => a.Body);
+            builder.Property(a => a.RowVersion).IsRowVersion();
+        }
+    }
+```
+
+BlogRepository:
+```c#
+        async Task IBlogRepository.Save(Domain.Model.Blog blog, byte[] rowVersion)
+        {
+            if (rowVersion == null)
+            {
+                if (!_db.Blogs.Any(a => a.Id == blog.Id)) _db.Blogs.Add(blog);
+                blog.Posts.ToList().ForEach(a => AddPost(a));
+            }
+            else
+            {
+                var changedPost = blog.Posts.FirstOrDefault();
+                if (changedPost != null) _db.Entry(changedPost).OriginalValues["RowVersion"] = rowVersion;
+            }
+
+            await _db.SaveChangesAsync();
+        }
+```
+
+## ViewModel
+
+```c#
+    public class PostViewModel
+    {
+        public Guid Id { get; set; }
+        public Guid BlogId { get; set; }
+        public string Body { get; set; }
+        public string Title { get; set; }
+        public byte[] RowVersion { get; set; }
+    }
+```
+
+## View
+
+```html
+        <form asp-action="Edit">
+            <input asp-for="BlogId" type="hidden" />
+            <input asp-for="RowVersion" type="hidden" />
+            <input asp-for="Id" type="hidden" />
+```
+
+## Controller
+```c#
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Guid id, PostViewModel post)
+        {
+            if (id != post.Id) return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _command.Execute(new Command.UpdatePost
+                    {
+                        BlogId = post.BlogId, Post = new PostDto {Id = post.Id, Title = post.Title, Body = post.Body, RowVersion = post.RowVersion}
+                    });
+                    return RedirectToAction(nameof(Index), new {blogId = post.BlogId});
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    var entry = ex.Entries.Single();
+                    var clientValues = (Post) entry.Entity;
+                    var databaseEntry = entry.GetDatabaseValues();
+                    if (databaseEntry == null)
+                    {
+                        ModelState.AddModelError(string.Empty,
+                            "Unable to save changes. The department was deleted by another user.");
+                    }
+                    else
+                    {
+                        var databaseValues = (Post) databaseEntry.ToObject();
+
+                        if (databaseValues.Title != clientValues.Title)
+                            ModelState.AddModelError("Title", $"Current value: {databaseValues.Title}");
+                        if (databaseValues.Body != clientValues.Body)
+                            ModelState.AddModelError("Body", $"Current value: {databaseValues.Body}");
+
+                        ModelState.AddModelError(string.Empty, "The record you attempted to edit "
+                                                               + "was modified by another user after you got the original value. The "
+                                                               + "edit operation was canceled and the current values in the database "
+                                                               + "have been displayed. If you still want to edit this record, click "
+                                                               + "the Save button again. Otherwise click the Back to List hyperlink.");
+                        post.RowVersion = databaseValues.RowVersion;
+                    }
+                }
+            }
+
+            return View(post);
+        }
+```
+
+## AppSettings
+
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=BlogDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information",
+      "Microsoft.EntityFrameworkCore": "Debug"
+    }
+  },
+  "AllowedHosts": "*"
+}
+```

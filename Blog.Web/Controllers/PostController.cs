@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Blog.Application;
 using Blog.Application.Commands;
 using Blog.Application.Dto;
 using Blog.Application.Queries;
+using Blog.Domain.Model;
 using Blog.Web.Mappers;
 using Blog.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Web.Controllers
 {
@@ -75,9 +78,41 @@ namespace Blog.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                await _command.Execute(new Command.UpdatePost
-                    {BlogId = post.BlogId, Post = new PostDto {Id = post.Id, Title = post.Title, Body = post.Body}});
-                return RedirectToAction(nameof(Index), new {blogId = post.BlogId});
+                try
+                {
+                    await _command.Execute(new Command.UpdatePost
+                    {
+                        BlogId = post.BlogId, Post = new PostDto {Id = post.Id, Title = post.Title, Body = post.Body, RowVersion = post.RowVersion}
+                    });
+                    return RedirectToAction(nameof(Index), new {blogId = post.BlogId});
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    var entry = ex.Entries.Single();
+                    var clientValues = (Post) entry.Entity;
+                    var databaseEntry = entry.GetDatabaseValues();
+                    if (databaseEntry == null)
+                    {
+                        ModelState.AddModelError(string.Empty,
+                            "Unable to save changes. The department was deleted by another user.");
+                    }
+                    else
+                    {
+                        var databaseValues = (Post) databaseEntry.ToObject();
+
+                        if (databaseValues.Title != clientValues.Title)
+                            ModelState.AddModelError("Title", $"Current value: {databaseValues.Title}");
+                        if (databaseValues.Body != clientValues.Body)
+                            ModelState.AddModelError("Body", $"Current value: {databaseValues.Body}");
+
+                        ModelState.AddModelError(string.Empty, "The record you attempted to edit "
+                                                               + "was modified by another user after you got the original value. The "
+                                                               + "edit operation was canceled and the current values in the database "
+                                                               + "have been displayed. If you still want to edit this record, click "
+                                                               + "the Save button again. Otherwise click the Back to List hyperlink.");
+                        post.RowVersion = databaseValues.RowVersion;
+                    }
+                }
             }
 
             return View(post);
