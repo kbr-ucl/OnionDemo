@@ -340,4 +340,4 @@ ASALocalRun/
 healthchecksdb
 
 
-Blog.Database.Migrations/*/
+Blog.Database.Migrations/Migrations/
